@@ -1,0 +1,290 @@
+# The Visible Words - AI Art Automation Platform
+# Complete Docker Compose setup for integrated deployment
+
+version: '3.8'
+
+services:
+  # ===========================================
+  # Core Application Services
+  # ===========================================
+  
+  # Printify Automation Web Interface
+  printify-automation:
+    build:
+      context: ./printify-automation
+      dockerfile: deploy/Dockerfile
+    container_name: printify-automation
+    ports:
+      - "7860:7860"  # Gradio interface
+      - "8000:8000"  # Future FastAPI interface
+    environment:
+      - DATABASE_URL=postgresql://printify_user:printify_pass@postgres:5432/printify_automation
+      - REDIS_URL=redis://redis:6379
+      - ENVIRONMENT=production
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+    volumes:
+      - ./printify-automation/config:/app/config:ro
+      - ./shared/uploads:/app/uploads
+      - ./shared/logs:/app/logs
+      - printify_data:/app/data
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - printify_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+  
+  # ===========================================
+  # Database Services
+  # ===========================================
+  
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: printify-postgres
+    environment:
+      POSTGRES_DB: printify_automation
+      POSTGRES_USER: printify_user
+      POSTGRES_PASSWORD: printify_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"  # Expose for development (remove in production)
+    restart: unless-stopped
+    networks:
+      - printify_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U printify_user -d printify_automation"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  # Redis Cache & Session Store
+  redis:
+    image: redis:7-alpine
+    container_name: printify-redis
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-defaultpass}
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"  # Expose for development (remove in production)
+    restart: unless-stopped
+    networks:
+      - printify_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  # ===========================================
+  # Background Processing
+  # ===========================================
+  
+  # Celery Worker for Background Tasks
+  worker:
+    build:
+      context: ./printify-automation
+      dockerfile: deploy/Dockerfile
+    container_name: printify-worker
+    command: celery worker -A main.celery --loglevel=info --concurrency=4
+    environment:
+      - DATABASE_URL=postgresql://printify_user:printify_pass@postgres:5432/printify_automation
+      - REDIS_URL=redis://redis:6379
+      - ENVIRONMENT=production
+    volumes:
+      - ./printify-automation/config:/app/config:ro
+      - ./shared/uploads:/app/uploads
+      - ./shared/logs:/app/logs
+      - printify_data:/app/data
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - printify_network
+  
+  # Celery Beat for Scheduled Tasks
+  scheduler:
+    build:
+      context: ./printify-automation
+      dockerfile: deploy/Dockerfile
+    container_name: printify-scheduler
+    command: celery beat -A main.celery --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql://printify_user:printify_pass@postgres:5432/printify_automation
+      - REDIS_URL=redis://redis:6379
+      - ENVIRONMENT=production
+    volumes:
+      - ./printify-automation/config:/app/config:ro
+      - ./shared/logs:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - printify_network
+  
+  # ===========================================
+  # Reverse Proxy & Load Balancer
+  # ===========================================
+  
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: printify-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./printify-automation/deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./shared/ssl:/etc/nginx/ssl:ro
+      - ./shared/static:/var/www/static:ro
+    depends_on:
+      - printify-automation
+    restart: unless-stopped
+    networks:
+      - printify_network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  
+  # ===========================================
+  # Monitoring & Observability
+  # ===========================================
+  
+  # Prometheus Metrics Collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: printify-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - printify_network
+  
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: printify-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - printify_network
+
+# ===========================================
+# Development Services (Optional)
+# ===========================================
+
+  # pgAdmin for Database Management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: printify-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@thevisiblewords.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - printify_network
+    profiles:
+      - development
+
+  # Redis Commander for Redis Management
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: printify-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - printify_network
+    profiles:
+      - development
+
+# ===========================================
+# Networks & Volumes
+# ===========================================
+
+networks:
+  printify_network:
+    driver: bridge
+    name: printify_automation_network
+
+volumes:
+  postgres_data:
+    name: printify_postgres_data
+  redis_data:
+    name: printify_redis_data
+  printify_data:
+    name: printify_app_data
+  prometheus_data:
+    name: printify_prometheus_data
+  grafana_data:
+    name: printify_grafana_data
+  pgadmin_data:
+    name: printify_pgadmin_data
+
+# ===========================================
+# Usage Instructions
+# ===========================================
+
+# Development with database tools:
+# docker-compose --profile development up -d
+
+# Production deployment:
+# docker-compose up -d
+
+# View logs:
+# docker-compose logs -f printify-automation
+
+# Scale workers:
+# docker-compose up -d --scale worker=3
+
+# Backup database:
+# docker-compose exec postgres pg_dump -U printify_user printify_automation > backup.sql
+
+# Access services:
+# - Main Application: http://localhost
+# - Gradio Interface: http://localhost:7860
+# - Grafana Dashboard: http://localhost:3000
+# - Prometheus: http://localhost:9090
+# - pgAdmin (dev): http://localhost:5050
+# - Redis Commander (dev): http://localhost:8081

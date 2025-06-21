@@ -1,0 +1,36 @@
+[
+    {
+        "blueprint_id": 241,
+        "provider": {
+            "id": 10,
+            "title": "MWW On Demand",
+            "country": "US",
+            "cost": []
+        }
+    },
+    {
+        "blueprint_id": 976,
+        "provider": {
+            "id": 92,
+            "title": "Pic the Gift",
+            "country": "US",
+            "cost": []
+        }
+    },
+    {
+        "blueprint_id": 479,
+        "provider": {
+            "id": 28,
+            "title": "District Photo"
+        }
+    },
+    {
+        "blueprint_id": 485,
+        "provider": {
+            "id": 28,
+            "title": "District Photo",
+            "country": "US",
+            "cost": []
+        }
+    }
+]

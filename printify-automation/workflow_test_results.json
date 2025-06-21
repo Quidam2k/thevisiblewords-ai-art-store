@@ -1,0 +1,273 @@
+{
+  "timestamp": "2025-06-21T11:46:29.034414",
+  "test_scenarios": {
+    "image_discovery": {
+      "total_images": 23,
+      "categorized": {
+        "fantasy": 3,
+        "sci-fi": 2,
+        "architecture": 3,
+        "nature": 5,
+        "abstract": 2,
+        "characters": 1
+      },
+      "uncategorized": 7,
+      "categories": {
+        "fantasy": [
+          "quidamn_a_fantasy_city_among_the_treetops_of_a_redwood_forest_i_45d10d34-33a7-45f2-ada2-6da0e4a485f2.png",
+          "quidamn_fantasy_magic_room_--ar_169_--style_raw_--stylize_200_03d654bd-c28c-4dfd-be33-38acb358707f.png",
+          "quidamn_Quiet_Consolation_After_a_tough_loss_a_male_half-elf_mo_6064866a-9cb9-425f-b297-172e5ab3df1b.png"
+        ],
+        "sci-fi": [
+          "quidamn_a_futuristic_utopian_city_visible_in_the_distance_viewe_3887f5c1-5d4f-40ed-a81b-be53b8218336.png",
+          "quidamn_A_pop-up_shop_on_a_meadow_futuristic_art_architecture_C_fb28c2e3-ce7e-46e5-b76d-9fbfb035469e.png"
+        ],
+        "architecture": [
+          "00001-quidamn_8K_Indianapolis_skyline_in_detailed_mosaic_style_with_l_11d2968e-ef5d-48d0-9eae-d1ae6bb98c92.jpg",
+          "quidamn_An_extraterrestrial_technological_architecture_Transfor_9a843c1c-7258-4773-b9a2-507144ecdf4f.png",
+          "quidamn_A_solarpunk_neighborhood_where_houses_are_built_into_li_26187bfe-116c-4ae9-8875-8320f1346601.png"
+        ],
+        "nature": [
+          "00002-quidamn_a_3d_schematic_of_a_small_village_with_mountains_in_the_f53b45a8-5ea1-432f-8449-61008ae21b8f.jpg",
+          "quidamn_a_d20_xmas_ornament_hanging_on_a_tree_--ar_24481266_--v_e5682c22-0e49-4c24-bd70-c61e50374106.png",
+          "quidamn_one_isolated_golden_tree_on_white_background_in_a_style_a73e4cb3-612c-402e-9c03-6c0357927842.png",
+          "quidamn_professional_voxel_art_landscape_of_one_gigantic_singul_1daca480-96eb-4a9d-9351-2dd90b36464b.png",
+          "quidamn_wide_angle_drone_shot_aerial_view_treetop_village_of_fa_d8ad8a6e-2289-467e-9251-d7e63f7d6d43.png"
+        ],
+        "abstract": [
+          "00011-quidamn_a_close_up_of_an_elaborate_body_art_design_on_the_full__8e0a89b0-18ae-4f56-8f2a-667556decb7f.jpg",
+          "quidamn_A_stained-glass_art_depiction_of_a_spiritual_battle_fro_6f4bef55-943b-4dd1-a874-e53e20a9a6d7.png"
+        ],
+        "characters": [
+          "quidamn_A_surreal_portrayal_of_a_woman_juggling_balls_that_rese_492e27b4-1cd7-4ef0-9c57-d535e9b4b94a.png"
+        ]
+      },
+      "file_types": {
+        ".jpg": 3,
+        ".png": 20
+      }
+    },
+    "filename_analysis": {
+      "tested_files": 10,
+      "average_prompt_length": 54.1,
+      "average_quality_score": 55.5,
+      "files_with_style_info": 3,
+      "files_with_subject_info": 5,
+      "examples": [
+        {
+          "filename": "quidamn_An_extraterrestrial_technological_architecture_Transfor_9a843c1c-7258-4773-b9a2-507144ecdf4f.png",
+          "extracted_prompt": "An extraterrestrial technological architecture Transfor",
+          "prompt_length": 55,
+          "quality_score": 40,
+          "contains_style_info": false,
+          "contains_subject_info": false
+        },
+        {
+          "filename": "quidamn_a_d20_xmas_ornament_hanging_on_a_tree_--ar_24481266_--v_e5682c22-0e49-4c24-bd70-c61e50374106.png",
+          "extracted_prompt": "a d20 xmas ornament hanging on a tree 24481266",
+          "prompt_length": 46,
+          "quality_score": 40,
+          "contains_style_info": false,
+          "contains_subject_info": true
+        },
+        {
+          "filename": "quidamn_a_fantasy_city_among_the_treetops_of_a_redwood_forest_i_45d10d34-33a7-45f2-ada2-6da0e4a485f2.png",
+          "extracted_prompt": "a fantasy city among the treetops of a redwood forest i",
+          "prompt_length": 55,
+          "quality_score": 60,
+          "contains_style_info": false,
+          "contains_subject_info": true
+        },
+        {
+          "filename": "quidamn_a_futuristic_utopian_city_visible_in_the_distance_viewe_3887f5c1-5d4f-40ed-a81b-be53b8218336.png",
+          "extracted_prompt": "a futuristic utopian city visible in the distance viewe",
+          "prompt_length": 55,
+          "quality_score": 60,
+          "contains_style_info": false,
+          "contains_subject_info": true
+        },
+        {
+          "filename": "quidamn_a_harengon_rabbitfolk_rogue_with_a_long_flowing_scarf_b_cacb6548-4563-4852-b574-68c279004514.png",
+          "extracted_prompt": "a harengon rabbitfolk rogue with a long flowing scarf b",
+          "prompt_length": 55,
+          "quality_score": 40,
+          "contains_style_info": false,
+          "contains_subject_info": false
+        }
+      ]
+    },
+    "tag_generation": {
+      "simulated_files": 8,
+      "average_tags_per_image": 6.375,
+      "unique_tags_generated": 36,
+      "examples": [
+        {
+          "image": "quidamn_An_extraterrestrial_technological_architecture_Transfor_9a843c1c-7258-4773-b9a2-507144ecdf4f.png",
+          "prompt": "An extraterrestrial technological architecture Transfor",
+          "generated_tags": [
+            "architecture",
+            "extraterrestrial",
+            "technological",
+            "transfor",
+            "ai-art"
+          ],
+          "tag_count": 5,
+          "generated_title": "An Extraterrestrial Technological Architecture Transfor"
+        },
+        {
+          "image": "quidamn_a_d20_xmas_ornament_hanging_on_a_tree_--ar_24481266_--v_e5682c22-0e49-4c24-bd70-c61e50374106.png",
+          "prompt": "a d20 xmas ornament hanging on a tree 24481266",
+          "generated_tags": [
+            "ai-art",
+            "hanging",
+            "ornament"
+          ],
+          "tag_count": 3,
+          "generated_title": "A D20 Xmas Ornament Hanging On"
+        },
+        {
+          "image": "quidamn_a_fantasy_city_among_the_treetops_of_a_redwood_forest_i_45d10d34-33a7-45f2-ada2-6da0e4a485f2.png",
+          "prompt": "a fantasy city among the treetops of a redwood forest i",
+          "generated_tags": [
+            "forest",
+            "fantasy",
+            "treetops",
+            "ai-art",
+            "redwood",
+            "fantasy-art",
+            "among"
+          ],
+          "tag_count": 7,
+          "generated_title": "A Fantasy City Among The Treetops"
+        }
+      ]
+    },
+    "workflow_validation": {
+      "tested_workflows": 5,
+      "successful_workflows": 5,
+      "success_rate": 100.0,
+      "workflow_steps": [
+        "Image Discovery",
+        "Filename Analysis",
+        "Prompt Extraction",
+        "Tag Generation",
+        "Title Generation",
+        "Description Generation",
+        "Print Area Calculation",
+        "Product Creation"
+      ],
+      "results": [
+        {
+          "image": "quidamn_An_extraterrestrial_technological_architecture_Transfor_9a843c1c-7258-4773-b9a2-507144ecdf4f.png",
+          "steps": {
+            "discovery": {
+              "success": true,
+              "details": "Image file found and accessible"
+            },
+            "filename_analysis": {
+              "success": true,
+              "details": "Extracted prompt: 55 characters"
+            },
+            "tag_generation": {
+              "success": true,
+              "details": "Generated 5 tags"
+            },
+            "product_readiness": {
+              "success": true,
+              "details": "Ready for product creation"
+            }
+          },
+          "overall_success": true
+        },
+        {
+          "image": "quidamn_a_d20_xmas_ornament_hanging_on_a_tree_--ar_24481266_--v_e5682c22-0e49-4c24-bd70-c61e50374106.png",
+          "steps": {
+            "discovery": {
+              "success": true,
+              "details": "Image file found and accessible"
+            },
+            "filename_analysis": {
+              "success": true,
+              "details": "Extracted prompt: 46 characters"
+            },
+            "tag_generation": {
+              "success": true,
+              "details": "Generated 3 tags"
+            },
+            "product_readiness": {
+              "success": true,
+              "details": "Ready for product creation"
+            }
+          },
+          "overall_success": true
+        },
+        {
+          "image": "quidamn_a_fantasy_city_among_the_treetops_of_a_redwood_forest_i_45d10d34-33a7-45f2-ada2-6da0e4a485f2.png",
+          "steps": {
+            "discovery": {
+              "success": true,
+              "details": "Image file found and accessible"
+            },
+            "filename_analysis": {
+              "success": true,
+              "details": "Extracted prompt: 55 characters"
+            },
+            "tag_generation": {
+              "success": true,
+              "details": "Generated 6 tags"
+            },
+            "product_readiness": {
+              "success": true,
+              "details": "Ready for product creation"
+            }
+          },
+          "overall_success": true
+        },
+        {
+          "image": "quidamn_a_futuristic_utopian_city_visible_in_the_distance_viewe_3887f5c1-5d4f-40ed-a81b-be53b8218336.png",
+          "steps": {
+            "discovery": {
+              "success": true,
+              "details": "Image file found and accessible"
+            },
+            "filename_analysis": {
+              "success": true,
+              "details": "Extracted prompt: 55 characters"
+            },
+            "tag_generation": {
+              "success": true,
+              "details": "Generated 6 tags"
+            },
+            "product_readiness": {
+              "success": true,
+              "details": "Ready for product creation"
+            }
+          },
+          "overall_success": true
+        },
+        {
+          "image": "quidamn_a_harengon_rabbitfolk_rogue_with_a_long_flowing_scarf_b_cacb6548-4563-4852-b574-68c279004514.png",
+          "steps": {
+            "discovery": {
+              "success": true,
+              "details": "Image file found and accessible"
+            },
+            "filename_analysis": {
+              "success": true,
+              "details": "Extracted prompt: 55 characters"
+            },
+            "tag_generation": {
+              "success": true,
+              "details": "Generated 6 tags"
+            },
+            "product_readiness": {
+              "success": true,
+              "details": "Ready for product creation"
+            }
+          },
+          "overall_success": true
+        }
+      ]
+    }
+  }
+}

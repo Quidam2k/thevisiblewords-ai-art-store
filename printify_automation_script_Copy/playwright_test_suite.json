@@ -1,0 +1,270 @@
+{
+  "name": "Printify Automation Tool - Browser Tests",
+  "description": "Comprehensive browser testing using Playwright MCP server",
+  "created": "2025-06-18T19:01:02.352763",
+  "tests": [
+    {
+      "name": "test_gradio_app_navigation",
+      "description": "Test navigation through Gradio app tabs",
+      "steps": [
+        {
+          "action": "navigate",
+          "description": "Navigate to Gradio app",
+          "mcp_command": "mcp__playwright__browser_navigate",
+          "parameters": {
+            "url": "http://localhost:7860"
+          },
+          "expected": "Page loads successfully"
+        },
+        {
+          "action": "screenshot",
+          "description": "Take initial screenshot",
+          "mcp_command": "mcp__playwright__browser_take_screenshot",
+          "parameters": {
+            "filename": "gradio-initial-load.png"
+          },
+          "expected": "Screenshot captured"
+        },
+        {
+          "action": "snapshot",
+          "description": "Get page accessibility snapshot",
+          "mcp_command": "mcp__playwright__browser_snapshot",
+          "parameters": {},
+          "expected": "Accessibility tree available"
+        },
+        {
+          "action": "click_tab",
+          "description": "Click Product Management tab",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Product Management tab",
+            "ref": "tab_product_management"
+          },
+          "expected": "Tab content changes"
+        },
+        {
+          "action": "screenshot",
+          "description": "Screenshot Product Management tab",
+          "mcp_command": "mcp__playwright__browser_take_screenshot",
+          "parameters": {
+            "filename": "product-management-tab.png"
+          },
+          "expected": "Product management interface visible"
+        }
+      ]
+    },
+    {
+      "name": "test_product_addition_workflow",
+      "description": "Test adding a product through the interface",
+      "steps": [
+        {
+          "action": "type_input",
+          "description": "Enter product link",
+          "mcp_command": "mcp__playwright__browser_type",
+          "parameters": {
+            "element": "Product link input field",
+            "ref": "product_link_input",
+            "text": "https://printify.com/catalog/product/384/t-shirt"
+          },
+          "expected": "Text entered in input field"
+        },
+        {
+          "action": "click_button",
+          "description": "Click Add Product button",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Add Product button",
+            "ref": "add_product_btn"
+          },
+          "expected": "Product addition process starts"
+        },
+        {
+          "action": "wait_for_result",
+          "description": "Wait for product addition result",
+          "mcp_command": "mcp__playwright__browser_wait_for",
+          "parameters": {
+            "text": "Product added",
+            "time": 5
+          },
+          "expected": "Success message appears"
+        },
+        {
+          "action": "screenshot",
+          "description": "Screenshot result",
+          "mcp_command": "mcp__playwright__browser_take_screenshot",
+          "parameters": {
+            "filename": "product-added-result.png"
+          },
+          "expected": "Result captured"
+        }
+      ]
+    },
+    {
+      "name": "test_upload_interface",
+      "description": "Test the enhanced upload interface",
+      "steps": [
+        {
+          "action": "click_tab",
+          "description": "Navigate to Enhanced Upload tab",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Enhanced Upload tab",
+            "ref": "tab_upload"
+          },
+          "expected": "Upload interface visible"
+        },
+        {
+          "action": "file_upload",
+          "description": "Upload test image",
+          "mcp_command": "mcp__playwright__browser_file_upload",
+          "parameters": {
+            "paths": [
+              "/path/to/test/image.png"
+            ]
+          },
+          "expected": "File uploaded successfully"
+        },
+        {
+          "action": "click_upload",
+          "description": "Start upload process",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Smart Upload button",
+            "ref": "upload_btn"
+          },
+          "expected": "Upload process begins"
+        },
+        {
+          "action": "monitor_progress",
+          "description": "Monitor upload progress",
+          "mcp_command": "mcp__playwright__browser_wait_for",
+          "parameters": {
+            "text": "Upload complete",
+            "time": 30
+          },
+          "expected": "Upload completes"
+        }
+      ]
+    },
+    {
+      "name": "test_configuration_interface",
+      "description": "Test configuration tab functionality",
+      "steps": [
+        {
+          "action": "click_tab",
+          "description": "Navigate to Configuration tab",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Configuration tab",
+            "ref": "tab_config"
+          },
+          "expected": "Configuration interface visible"
+        },
+        {
+          "action": "refresh_status",
+          "description": "Test refresh status button",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Refresh Status button",
+            "ref": "refresh_status_btn"
+          },
+          "expected": "Status refreshes"
+        },
+        {
+          "action": "screenshot",
+          "description": "Capture configuration status",
+          "mcp_command": "mcp__playwright__browser_take_screenshot",
+          "parameters": {
+            "filename": "configuration-status.png"
+          },
+          "expected": "Configuration status visible"
+        }
+      ]
+    },
+    {
+      "name": "test_analytics_interface",
+      "description": "Test analytics and monitoring features",
+      "steps": [
+        {
+          "action": "click_tab",
+          "description": "Navigate to Analytics tab",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Analytics tab",
+            "ref": "tab_analytics"
+          },
+          "expected": "Analytics interface visible"
+        },
+        {
+          "action": "refresh_analytics",
+          "description": "Refresh analytics data",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Refresh Analytics button",
+            "ref": "refresh_analytics_btn"
+          },
+          "expected": "Analytics data updates"
+        },
+        {
+          "action": "screenshot",
+          "description": "Capture analytics dashboard",
+          "mcp_command": "mcp__playwright__browser_take_screenshot",
+          "parameters": {
+            "filename": "analytics-dashboard.png"
+          },
+          "expected": "Analytics visible"
+        }
+      ]
+    },
+    {
+      "name": "test_tools_interface",
+      "description": "Test utility tools functionality",
+      "steps": [
+        {
+          "action": "click_tab",
+          "description": "Navigate to Tools tab",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Tools tab",
+            "ref": "tab_tools"
+          },
+          "expected": "Tools interface visible"
+        },
+        {
+          "action": "analyze_image",
+          "description": "Test image analysis tool",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Analyze Image button",
+            "ref": "analyze_btn"
+          },
+          "expected": "Analysis tool activates"
+        },
+        {
+          "action": "validate_config",
+          "description": "Test configuration validation",
+          "mcp_command": "mcp__playwright__browser_click",
+          "parameters": {
+            "element": "Validate Configuration button",
+            "ref": "validate_config_btn"
+          },
+          "expected": "Validation results shown"
+        }
+      ]
+    }
+  ],
+  "setup_instructions": [
+    "1. Ensure Gradio app is running on localhost:7860",
+    "2. Have test images available for upload testing",
+    "3. Configure valid Printify API credentials",
+    "4. Ensure MCP Playwright server is available"
+  ],
+  "expected_outcomes": [
+    "All tabs navigate successfully",
+    "Product addition workflow completes",
+    "File upload functionality works",
+    "Configuration interface is responsive",
+    "Analytics data displays correctly",
+    "Tools provide expected functionality"
+  ]
+}

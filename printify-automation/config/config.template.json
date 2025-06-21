@@ -1,0 +1,142 @@
+{
+    "api": {
+        "access_token": "",
+        "shop_id": "",
+        "base_url": "https://api.printify.com/v1",
+        "v2_base_url": "https://api.printify.com/v2",
+        "user_agent": "Printify-Automation-Tool",
+        "rate_limit_rpm": 600,
+        "rate_limit_product_creation": 200,
+        "retry_attempts": 3,
+        "retry_delay": 1.0
+    },
+    "pricing_tiers": {
+        "basic": {
+            "base_price": 1499,
+            "markup_percentage": 0.0,
+            "min_price": 999,
+            "max_price": 9999
+        },
+        "premium": {
+            "base_price": 1999,
+            "markup_percentage": 15.0,
+            "min_price": 1499,
+            "max_price": 4999
+        },
+        "luxury": {
+            "base_price": 2999,
+            "markup_percentage": 25.0,
+            "min_price": 2499,
+            "max_price": 9999
+        },
+        "custom": {
+            "base_price": 1999,
+            "markup_percentage": 10.0,
+            "min_price": 999,
+            "max_price": 19999
+        }
+    },
+    "product_settings": [
+        {
+            "blueprint_id": 384,
+            "name": "Unisex Heavy Cotton Tee",
+            "category": "apparel",
+            "pricing_tier": "basic",
+            "print_positions": [
+                "front"
+            ],
+            "default_variants": [],
+            "image_requirements": {
+                "min_width": 2400,
+                "min_height": 2400,
+                "dpi": 300
+            }
+        },
+        {
+            "blueprint_id": 5,
+            "name": "Premium Poster",
+            "category": "wall-art",
+            "pricing_tier": "premium",
+            "print_positions": [
+                "front"
+            ],
+            "default_variants": [],
+            "image_requirements": {
+                "min_width": 3000,
+                "min_height": 3000,
+                "dpi": 300
+            }
+        },
+        {
+            "blueprint_id": 9,
+            "name": "Coffee Mug",
+            "category": "drinkware",
+            "pricing_tier": "basic",
+            "print_positions": [
+                "front"
+            ],
+            "default_variants": [],
+            "image_requirements": {
+                "min_width": 2000,
+                "min_height": 1200,
+                "dpi": 300
+            }
+        },
+        {
+            "blueprint_id": 6,
+            "name": "Canvas Print",
+            "category": "wall-art",
+            "pricing_tier": "luxury",
+            "print_positions": [
+                "front"
+            ],
+            "default_variants": [],
+            "image_requirements": {
+                "min_width": 3600,
+                "min_height": 3600,
+                "dpi": 300
+            }
+        },
+        {
+            "blueprint_id": 12,
+            "name": "Phone Case",
+            "category": "accessories",
+            "pricing_tier": "premium",
+            "print_positions": [
+                "front"
+            ],
+            "default_variants": [],
+            "image_requirements": {
+                "min_width": 1800,
+                "min_height": 3200,
+                "dpi": 300
+            }
+        }
+    ],
+    "image_processing": {
+        "max_width": 4000,
+        "max_height": 4000,
+        "quality": 90,
+        "format": "JPEG",
+        "optimize": true,
+        "auto_orient": true,
+        "strip_metadata": false
+    },
+    "tag_settings": {
+        "max_tags": 15,
+        "min_tag_length": 3,
+        "include_style_tags": true,
+        "include_color_tags": true,
+        "include_mood_tags": true,
+        "custom_tag_templates": [
+            "ai-art",
+            "digital-art"
+        ]
+    },
+    "general": {
+        "auto_save": true,
+        "backup_count": 5,
+        "log_level": "INFO",
+        "theme": "default"
+    }
+}

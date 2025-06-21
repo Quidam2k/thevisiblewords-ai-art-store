@@ -1,0 +1,129 @@
+# The Visible Words - Master Requirements File
+# Combined dependencies for the complete AI Art Automation Platform
+
+# ========================================
+# Core Printify Automation Dependencies
+# ========================================
+
+# Web Framework & UI
+gradio>=4.0.0
+fastapi>=0.104.0          # Modern API framework for future enhancements
+uvicorn>=0.24.0           # ASGI server for FastAPI
+
+# Core Dependencies
+requests>=2.28.0          # HTTP requests for API calls
+pillow>=9.0.0            # Image processing
+pandas>=1.5.0            # Data analysis and CSV handling
+pydantic>=1.10.0         # Data validation and settings management
+
+# Enhanced Functionality
+psutil>=5.9.0            # System monitoring and performance metrics
+pyyaml>=6.0              # YAML configuration support
+watchdog>=3.0.0          # File system monitoring
+aiofiles>=23.0.0         # Async file operations
+
+# ========================================
+# Database & Caching (Future Integration)
+# ========================================
+sqlalchemy>=2.0.0        # Database ORM
+alembic>=1.12.0          # Database migrations
+sqlite3                  # Default database (built-in)
+redis>=5.0.0             # Caching and session storage
+
+# ========================================
+# Authentication & Security
+# ========================================
+python-jose[cryptography]>=3.3.0    # JWT token handling
+passlib[bcrypt]>=1.7.4              # Password hashing
+python-multipart>=0.0.6             # Form data parsing
+
+# ========================================
+# Background Tasks & Queue Management
+# ========================================
+celery>=5.3.0            # Background task processing
+kombu>=5.3.0             # Message queue abstraction
+
+# ========================================
+# Monitoring & Logging
+# ========================================
+prometheus-client>=0.18.0    # Metrics collection
+structlog>=23.0.0            # Structured logging
+
+# ========================================
+# Testing & Quality Assurance
+# ========================================
+pytest>=7.0.0           # Testing framework
+pytest-asyncio>=0.21.0  # Async testing support
+pytest-cov>=4.0.0       # Coverage reporting
+black>=22.0.0           # Code formatting
+flake8>=5.0.0           # Linting
+mypy>=1.0.0             # Type checking
+
+# ========================================
+# Development & Deployment
+# ========================================
+python-dotenv>=1.0.0    # Environment variable management
+gunicorn>=21.0.0        # Production WSGI server
+docker>=6.0.0           # Docker Python SDK
+
+# ========================================
+# AI & Machine Learning (Future Features)
+# ========================================
+# numpy>=1.24.0          # Numerical computing
+# torch>=2.0.0           # PyTorch for AI features
+# transformers>=4.30.0   # Hugging Face transformers
+# opencv-python>=4.8.0   # Computer vision
+
+# ========================================
+# Browser Testing & Automation
+# ========================================
+playwright>=1.40.0      # Browser automation for testing
+selenium>=4.15.0        # Web driver for browser testing
+
+# ========================================
+# Data Export & Reporting
+# ========================================
+openpyxl>=3.1.0         # Excel file handling
+reportlab>=4.0.0        # PDF generation
+matplotlib>=3.7.0       # Data visualization
+seaborn>=0.12.0         # Statistical data visualization
+
+# ========================================
+# API Documentation
+# ========================================
+fastapi[all]>=0.104.0   # Complete FastAPI with all dependencies
+swagger-ui-bundle>=0.1.0  # API documentation UI
+
+# ========================================
+# Production Optimization
+# ========================================
+orjson>=3.9.0           # Fast JSON serialization
+httpx>=0.25.0           # Modern HTTP client
+asyncpg>=0.29.0         # Async PostgreSQL adapter (for production DB)
+
+# ========================================
+# Error Tracking & Monitoring
+# ========================================
+sentry-sdk[fastapi]>=1.38.0  # Error tracking and performance monitoring
+
+# ========================================
+# Email & Notifications
+# ========================================
+fastapi-mail>=1.4.0     # Email notifications
+twilio>=8.10.0          # SMS notifications (optional)
+
+# ========================================
+# File Storage & CDN
+# ========================================
+boto3>=1.34.0           # AWS S3 integration
+azure-storage-blob>=12.19.0  # Azure Blob Storage
+google-cloud-storage>=2.10.0  # Google Cloud Storage
+
+# Note: Install command for development:
+# pip install -r requirements.txt
+
+# Note: For production deployment, consider using:
+# pip install --no-cache-dir -r requirements.txt
+
+# Note: Some dependencies marked as "future features" are commented out
+# to reduce initial installation complexity. Uncomment as needed.

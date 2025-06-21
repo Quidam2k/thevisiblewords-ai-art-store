@@ -1,0 +1,248 @@
+// AI Art Store Database Schema
+// This schema defines the database structure for the AI art e-commerce platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ===================================
+// ARTWORK & PRODUCT MANAGEMENT
+// ===================================
+
+model Artwork {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  prompt       String?
+  fileUrl      String   @map("file_url")
+  thumbnailUrl String?  @map("thumbnail_url")
+  analysis     Json?    // ImageAnalysis data
+  tags         String[]
+  style        Style    @default(WHIMSY)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  products Product[]
+
+  @@map("artworks")
+}
+
+model Product {
+  id                  String   @id @default(cuid())
+  artworkId           String   @map("artwork_id")
+  printifyProductId   String?  @unique @map("printify_product_id")
+  title               String
+  description         String?
+  basePrice           Int      @map("base_price") // in cents
+  markupPercentage    Int      @default(100) @map("markup_percentage") // 100% = 2x cost
+  active              Boolean  @default(true)
+  printifyBlueprintId Int      @map("printify_blueprint_id")
+  printProviderId     Int      @map("print_provider_id")
+  variants            Json?    // ProductVariant[]
+  images              String[] // Array of image URLs
+  category            String?
+  featured            Boolean  @default(false)
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  artwork    Artwork     @relation(fields: [artworkId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+
+  @@index([artworkId])
+  @@index([printifyProductId])
+  @@index([active])
+  @@index([featured])
+  @@index([category])
+  @@map("products")
+}
+
+// ===================================
+// ORDER MANAGEMENT
+// ===================================
+
+model Order {
+  id                    String      @id @default(cuid())
+  stripePaymentIntentId String?     @unique @map("stripe_payment_intent_id")
+  customerEmail         String      @map("customer_email")
+  customerName          String?     @map("customer_name")
+  customerPhone         String?     @map("customer_phone")
+  shippingAddress       Json        @map("shipping_address") // Address object
+  billingAddress        Json?       @map("billing_address") // Address object
+  totalAmount           Int         @map("total_amount") // in cents
+  subtotal              Int         @default(0) // in cents
+  tax                   Int         @default(0) // in cents
+  shipping              Int         @default(0) // in cents
+  status                OrderStatus @default(PENDING)
+  printifyOrderId       String?     @map("printify_order_id")
+  trackingInfo          Json?       @map("tracking_info")
+  notes                 String?
+  createdAt             DateTime    @default(now()) @map("created_at")
+  updatedAt             DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  orderItems OrderItem[]
+
+  @@index([status])
+  @@index([customerEmail])
+  @@index([createdAt(sort: Desc)])
+  @@map("orders")
+}
+
+model OrderItem {
+  id                String   @id @default(cuid())
+  orderId           String   @map("order_id")
+  productId         String   @map("product_id")
+  printifyVariantId Int      @map("printify_variant_id")
+  quantity          Int
+  unitPrice         Int      @map("unit_price") // in cents
+  totalPrice        Int      @map("total_price") // in cents
+  productSnapshot   Json?    @map("product_snapshot") // Product data at time of order
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  // Relations
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+// ===================================
+// CUSTOMER REQUESTS & COMMUNICATION
+// ===================================
+
+model CustomRequest {
+  id                   String              @id @default(cuid())
+  customerEmail        String              @map("customer_email")
+  customerName         String?             @map("customer_name")
+  prompt               String
+  preferredProducts    String[]            @map("preferred_products")
+  status               CustomRequestStatus @default(PENDING)
+  adminNotes           String?             @map("admin_notes")
+  estimatedCompletion  DateTime?           @map("estimated_completion")
+  budget               Int?                // in cents
+  priority             Priority            @default(NORMAL)
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([customerEmail])
+  @@index([createdAt(sort: Desc)])
+  @@map("custom_requests")
+}
+
+// ===================================
+// ANALYTICS & TRACKING
+// ===================================
+
+model Analytics {
+  id        String      @id @default(cuid())
+  type      AnalyticsType
+  event     String      // 'page_view', 'product_view', 'add_to_cart', 'purchase', etc.
+  data      Json        // Event-specific data
+  userId    String?     @map("user_id") // For tracking user sessions
+  productId String?     @map("product_id")
+  value     Decimal?    // For revenue tracking
+  timestamp DateTime    @default(now())
+
+  @@index([type])
+  @@index([event])
+  @@index([timestamp(sort: Desc)])
+  @@index([productId])
+  @@map("analytics")
+}
+
+// ===================================
+// ADMIN & USER MANAGEMENT
+// ===================================
+
+model AdminUser {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  passwordHash String  @map("password_hash")
+  role        AdminRole @default(ADMIN)
+  active      Boolean  @default(true)
+  lastLogin   DateTime? @map("last_login")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("admin_users")
+}
+
+// ===================================
+// NEWSLETTER & MARKETING
+// ===================================
+
+model Newsletter {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  active    Boolean  @default(true)
+  source    String?  // 'homepage', 'checkout', 'popup', etc.
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([active])
+  @@map("newsletter")
+}
+
+// ===================================
+// ENUMS
+// ===================================
+
+enum Style {
+  WHIMSY
+  EPIC
+  HYBRID
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum CustomRequestStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  DECLINED
+  ON_HOLD
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum AnalyticsType {
+  PAGE_VIEW
+  PRODUCT_VIEW
+  CART_ACTION
+  PURCHASE
+  CUSTOM_REQUEST
+  ERROR
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+  VIEWER
+}
