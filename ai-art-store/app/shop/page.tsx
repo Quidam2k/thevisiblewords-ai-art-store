@@ -46,9 +46,13 @@ export default function ShopPage() {
     tags: searchParams.getAll('tags'),
   }
 
-  // Fetch products based on current filters
+  // Fetch products based on current filters with debouncing
   useEffect(() => {
-    fetchProducts()
+    const timeoutId = setTimeout(() => {
+      fetchProducts()
+    }, 300) // Debounce API calls
+
+    return () => clearTimeout(timeoutId)
   }, [searchParams])
 
   const fetchProducts = async () => {

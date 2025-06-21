@@ -1,0 +1,72 @@
+{
+  "summary": {
+    "total_tests": 6,
+    "passed": 3,
+    "failed": 3,
+    "success_rate": 50.0,
+    "duration_seconds": 0.33,
+    "timestamp": "2025-06-21T12:48:15.218491"
+  },
+  "results": [
+    {
+      "test": "file_structure",
+      "success": true,
+      "message": "All 14 required files present",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:14.897604"
+    },
+    {
+      "test": "automation_system",
+      "success": false,
+      "message": "Error: No module named 'PIL'",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:15.204815"
+    },
+    {
+      "test": "database_exists",
+      "success": false,
+      "message": "Database file not found",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:15.205336"
+    },
+    {
+      "test": "test_images",
+      "success": true,
+      "message": "Found 23 test images, using quidamn_An_extraterrestrial_technological_architecture_Transfor_9a843c1c-7258-4773-b9a2-507144ecdf4f.png",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:15.207547"
+    },
+    {
+      "test": "image_processing_workflow",
+      "success": false,
+      "message": "Error: No module named 'PIL'",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:15.214047"
+    },
+    {
+      "test": "data_conversion",
+      "success": true,
+      "message": "Successfully converted automation data to store format",
+      "details": {
+        "variants_count": 2,
+        "tags_count": 5,
+        "style": "WHIMSY"
+      },
+      "timestamp": "2025-06-21T12:48:15.214089"
+    },
+    {
+      "test": "api_endpoint__api_products",
+      "success": false,
+      "message": "Server not running (expected for this test)",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:15.216961"
+    },
+    {
+      "test": "api_endpoint__api_categories",
+      "success": false,
+      "message": "Server not running (expected for this test)",
+      "details": {},
+      "timestamp": "2025-06-21T12:48:15.217403"
+    }
+  ]
+}
