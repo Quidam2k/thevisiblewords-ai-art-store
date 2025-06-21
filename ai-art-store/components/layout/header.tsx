@@ -13,10 +13,10 @@ export function Header() {
 
   const navigation = [
     { name: 'Shop', href: '/shop' },
-    { name: 'Whimsy', href: '/shop?style=WHIMSY' },
-    { name: 'Epic', href: '/shop?style=EPIC' },
-    { name: 'Custom', href: '/custom' },
-    { name: 'About', href: '/about' },
+    { name: 'Apparel', href: '/shop?category=Apparel' },
+    { name: 'Accessories', href: '/shop?category=Accessories' },
+    { name: 'Collections', href: '/shop?style=WHIMSY' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   return (

@@ -1,0 +1,8 @@
+# This is a placeholder for the favicon.ico file
+# In a real deployment, this would be an actual ICO file
+# For development, browsers will use a default favicon
+# 
+# To add a real favicon:
+# 1. Create a favicon.ico file (16x16, 32x32, 48x48 sizes)
+# 2. Replace this text file with the actual ICO file
+# 3. Or use an online favicon generator

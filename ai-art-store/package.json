@@ -13,7 +13,10 @@
     "db:seed": "npx tsx prisma/seed.ts",
     "db:reset": "npx prisma db push --force-reset && npm run db:seed",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:browser": "playwright test",
+    "test:e2e": "playwright test",
+    "test:integration": "jest --testPathPattern=integration"
   },
   "dependencies": {
     "next": "^15.0.0",

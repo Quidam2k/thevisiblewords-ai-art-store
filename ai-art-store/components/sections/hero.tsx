@@ -10,14 +10,16 @@ export function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Where AI Meets
-                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  {' '}Art
-                </span>
+                The Visible Words
               </h1>
               <p className="text-xl text-gray-600 max-w-lg">
-                Discover unique AI-generated artwork transformed into premium quality 
-                prints, apparel, and home decor. Every piece tells a story.
+                AI-generated artwork from text prompts and gradual iteration. 
+                <span className="italic block mt-2 text-lg">
+                  Disclaimer: all images took far fewer than a thousand words
+                </span>
+              </p>
+              <p className="text-lg text-gray-500 max-w-lg">
+                Help us raise funds to offset our crippling Burning Man addiction ✨
               </p>
             </div>
 
@@ -29,10 +31,10 @@ export function Hero() {
                 Shop Now
               </Link>
               <Link
-                href="/custom"
+                href="/collections"
                 className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-600 hover:text-purple-600 transition-colors text-center"
               >
-                Custom Request
+                View Collections
               </Link>
             </div>
 

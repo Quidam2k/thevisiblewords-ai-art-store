@@ -1,7 +1,7 @@
 {
   "name": "The Visible Words - AI Art Store",
   "short_name": "Visible Words",
-  "description": "AI-Generated Art Store with Print-on-Demand Products",
+  "description": "AI-generated artwork from text prompts and gradual iteration. Help us raise funds to offset our crippling Burning Man addiction ✨",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

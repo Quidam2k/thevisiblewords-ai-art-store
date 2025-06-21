@@ -30,11 +30,11 @@ export function StyleShowcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Three Distinct Styles
+            Our Art Philosophy
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Every piece of art is categorized into one of our signature styles, 
-            each designed to evoke different emotions and suit various spaces.
+            Three distinct approaches to AI-generated art, each crafted through 
+            iterative prompting and careful curation to bring text to visual life.
           </p>
         </div>
 

@@ -23,107 +23,66 @@ async function main() {
 async function createSampleArtworks() {
   const sampleArtworks = [
     {
-      title: 'Whimsical Forest Dreams',
-      description: 'A magical forest scene with floating lights and mystical creatures',
-      prompt: 'magical forest with glowing orbs, fairy lights, whimsical creatures, dreamy atmosphere',
-      fileUrl: '/images/sample/whimsical-forest.jpg',
-      thumbnailUrl: '/images/sample/whimsical-forest-thumb.jpg',
-      tags: ['fantasy', 'forest', 'magical', 'whimsical', 'nature'],
+      title: 'Luminous Meadow Pavilion',
+      description: 'Ethereal architectural structure suspended in a twilight meadow with glowing paper lanterns creating magical ambiance',
+      prompt: 'A pop-up shop on a meadow futuristic art architecture with paper lanterns, twilight lighting, ethereal atmosphere',
+      fileUrl: '/sample-product-1.png',
+      thumbnailUrl: '/sample-product-1.png',
+      tags: ['architecture', 'meadow', 'lanterns', 'twilight', 'ethereal', 'peaceful', 'zen'],
       style: 'WHIMSY' as const,
       analysis: {
         dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
         hasAlpha: false,
-        dominantColors: ['#4A90E2', '#50C878', '#FFD700', '#DDA0DD'],
+        dominantColors: ['#FF8C42', '#4A90E2', '#2F4F4F', '#F4A460'],
         complexity: 'high' as const,
         quality: 'high' as const,
         fileSize: 2048000,
         recommendedProducts: [
-          { printifyBlueprintId: 3, confidence: 0.9, reason: 'Great for apparel', variants: [1, 2, 3], category: 'Apparel', name: 'T-Shirt' },
-          { printifyBlueprintId: 384, confidence: 0.85, reason: 'Perfect for wall art', variants: [1, 2], category: 'Wall Art', name: 'Poster' }
+          { printifyBlueprintId: 384, confidence: 0.95, reason: 'Atmospheric scenes perfect for wall art', variants: [1, 2, 3], category: 'Wall Art', name: 'Poster' },
+          { printifyBlueprintId: 3, confidence: 0.8, reason: 'Peaceful design great for apparel', variants: [1, 2, 3], category: 'Apparel', name: 'T-Shirt' }
         ]
       }
     },
     {
-      title: 'Epic Dragon Mountain',
-      description: 'A massive dragon soaring over snow-capped mountains with dramatic lighting',
-      prompt: 'epic dragon flying over mountains, dramatic sky, fantasy landscape, powerful and majestic',
-      fileUrl: '/images/sample/epic-dragon.jpg',
-      thumbnailUrl: '/images/sample/epic-dragon-thumb.jpg',
-      tags: ['dragon', 'epic', 'mountains', 'fantasy', 'dramatic'],
+      title: 'Sacred Stained Glass Angels',
+      description: 'Dramatic stained glass artwork featuring opposing angels in brilliant red and blue with intricate geometric patterns',
+      prompt: 'stained glass angels, red and blue contrast, sacred art, geometric patterns, dramatic lighting, spiritual battle',
+      fileUrl: '/sample-product-2.png',
+      thumbnailUrl: '/sample-product-2.png',
+      tags: ['stained-glass', 'angels', 'religious', 'geometric', 'dramatic', 'spiritual', 'contrast'],
       style: 'EPIC' as const,
       analysis: {
         dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
         hasAlpha: false,
-        dominantColors: ['#8B0000', '#2F4F4F', '#FFD700', '#000000'],
+        dominantColors: ['#DC143C', '#4169E1', '#FFD700', '#FFFFFF'],
         complexity: 'high' as const,
         quality: 'high' as const,
         fileSize: 2156000,
         recommendedProducts: [
-          { printifyBlueprintId: 384, confidence: 0.95, reason: 'Epic scenes work great as posters', variants: [1, 2, 3], category: 'Wall Art', name: 'Poster' },
-          { printifyBlueprintId: 480, confidence: 0.9, reason: 'Dramatic for canvas prints', variants: [1, 2], category: 'Wall Art', name: 'Canvas' }
+          { printifyBlueprintId: 384, confidence: 0.98, reason: 'Stained glass designs are perfect for poster art', variants: [1, 2, 3], category: 'Wall Art', name: 'Poster' },
+          { printifyBlueprintId: 480, confidence: 0.95, reason: 'Spiritual art works beautifully on canvas', variants: [1, 2], category: 'Wall Art', name: 'Canvas' }
         ]
       }
     },
     {
-      title: 'Hybrid Cyber Garden',
-      description: 'A futuristic garden where technology and nature blend seamlessly',
-      prompt: 'cyberpunk garden, neon plants, technology meets nature, hybrid aesthetic, colorful and mysterious',
-      fileUrl: '/images/sample/hybrid-cyber.jpg',
-      thumbnailUrl: '/images/sample/hybrid-cyber-thumb.jpg',
-      tags: ['cyberpunk', 'nature', 'technology', 'futuristic', 'neon'],
+      title: 'Enchanted Library Sanctuary',
+      description: 'Mystical ancient library with towering bookshelves, natural overgrowth, and ethereal lighting through gothic windows',
+      prompt: 'fantasy magic library with books, overgrown plants, gothic windows, mystical atmosphere, ancient knowledge',
+      fileUrl: '/sample-product-3.png',
+      thumbnailUrl: '/sample-product-3.png',
+      tags: ['library', 'fantasy', 'books', 'gothic', 'mystical', 'ancient', 'magical'],
       style: 'HYBRID' as const,
       analysis: {
         dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
         hasAlpha: false,
-        dominantColors: ['#00FFFF', '#FF1493', '#32CD32', '#9400D3'],
+        dominantColors: ['#2F4F4F', '#228B22', '#DAA520', '#F5DEB3'],
         complexity: 'high' as const,
         quality: 'high' as const,
         fileSize: 1987000,
         recommendedProducts: [
-          { printifyBlueprintId: 3, confidence: 0.8, reason: 'Cool design for apparel', variants: [1, 2, 3], category: 'Apparel', name: 'T-Shirt' },
-          { printifyBlueprintId: 32, confidence: 0.85, reason: 'Unique design for phone cases', variants: [1], category: 'Accessories', name: 'Phone Case' }
-        ]
-      }
-    },
-    {
-      title: 'Peaceful Zen Garden',
-      description: 'A serene Japanese garden with cherry blossoms and meditation stones',
-      prompt: 'zen garden, cherry blossoms, peaceful meditation space, soft colors, tranquil atmosphere',
-      fileUrl: '/images/sample/zen-garden.jpg',
-      thumbnailUrl: '/images/sample/zen-garden-thumb.jpg',
-      tags: ['zen', 'peaceful', 'japanese', 'meditation', 'flowers'],
-      style: 'WHIMSY' as const,
-      analysis: {
-        dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
-        hasAlpha: false,
-        dominantColors: ['#FFB6C1', '#98FB98', '#F0E68C', '#E6E6FA'],
-        complexity: 'medium' as const,
-        quality: 'high' as const,
-        fileSize: 1756000,
-        recommendedProducts: [
-          { printifyBlueprintId: 5, confidence: 0.9, reason: 'Peaceful designs work well on mugs', variants: [1], category: 'Home & Living', name: 'Mug' },
-          { printifyBlueprintId: 384, confidence: 0.8, reason: 'Calming art for wall display', variants: [1, 2], category: 'Wall Art', name: 'Poster' }
-        ]
-      }
-    },
-    {
-      title: 'Epic Space Battle',
-      description: 'Massive spaceships engaged in an intense battle among the stars',
-      prompt: 'epic space battle, massive spaceships, lasers, stars, dramatic sci-fi scene',
-      fileUrl: '/images/sample/space-battle.jpg',
-      thumbnailUrl: '/images/sample/space-battle-thumb.jpg',
-      tags: ['space', 'battle', 'sci-fi', 'spaceships', 'epic'],
-      style: 'EPIC' as const,
-      analysis: {
-        dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
-        hasAlpha: false,
-        dominantColors: ['#000080', '#FF4500', '#FFFFFF', '#FFD700'],
-        complexity: 'high' as const,
-        quality: 'high' as const,
-        fileSize: 2234000,
-        recommendedProducts: [
-          { printifyBlueprintId: 384, confidence: 0.95, reason: 'Epic space scenes are perfect for posters', variants: [1, 2, 3], category: 'Wall Art', name: 'Poster' },
-          { printifyBlueprintId: 3, confidence: 0.8, reason: 'Cool sci-fi design for apparel', variants: [1, 2], category: 'Apparel', name: 'T-Shirt' }
+          { printifyBlueprintId: 384, confidence: 0.9, reason: 'Literary themes work excellently as wall art', variants: [1, 2, 3], category: 'Wall Art', name: 'Poster' },
+          { printifyBlueprintId: 5, confidence: 0.85, reason: 'Book lovers would love this on a mug', variants: [1], category: 'Home & Living', name: 'Mug' },
+          { printifyBlueprintId: 3, confidence: 0.8, reason: 'Fantasy design appeals to broad apparel market', variants: [1, 2], category: 'Apparel', name: 'T-Shirt' }
         ]
       }
     }
