@@ -2,59 +2,55 @@
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Node.js 18+ installed
-- Git repository initialized
-- WSL2 or Unix-like environment (recommended)
+### ✅ Ready to Use - Already Set Up
+- ✅ Node.js v22.16.0 (required 18+)
+- ✅ Git repository initialized  
+- ✅ Dependencies installed (node_modules)
+- ✅ Environment variables configured (.env)
 
-### Initial Setup
-```bash
-# Navigate to the project directory
-cd ai-art-store
+### 🎯 One-Step Database Setup & Launch
 
-# Install dependencies
-npm install
+**IMPORTANT: Terminal Requirements**
+- **Windows**: Use **PowerShell** or **Command Prompt** (avoid WSL for npm operations)
+- **Mac/Linux**: Use standard terminal
+- **No admin privileges required**
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env file with your API keys (see Environment Setup below)
+```powershell
+# Navigate to the ai-art-store directory
+cd H:\Development\www.thevisiblewords.com\ai-art-store
 
-# Initialize database
+# Set up database (one-time setup)
 npx prisma generate
-npx prisma db push
+npx prisma db push  
 npx prisma db seed
 
 # Start development server
 npm run dev
 ```
 
-## 🔧 Environment Setup
+**After running these commands, the application will be available at:** `http://localhost:3000`
 
-### Required Environment Variables
-Create `.env` file with these required variables:
+## 🔧 Environment Configuration
+
+### ✅ Already Configured - Ready for Testing
+The `.env` file is already set up with local testing configuration:
+- ✅ SQLite database for local development
+- ✅ Placeholder API keys (safe for testing)
+- ✅ Local development URLs
+
+### 🔑 Optional: Add Real API Keys
+For full payment and product sync testing, update `.env` with:
 
 ```bash
-# Database
-DATABASE_URL="file:./dev.db"
+# Real Stripe keys (get from https://dashboard.stripe.com/test/apikeys)  
+STRIPE_SECRET_KEY="sk_test_YOUR_ACTUAL_STRIPE_KEY"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_YOUR_ACTUAL_STRIPE_KEY"
 
-# Stripe (get from https://dashboard.stripe.com/test/apikeys)
-STRIPE_SECRET_KEY="sk_test_YOUR_STRIPE_SECRET_KEY_HERE"
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE"
-
-# Printify API (get from https://printify.com/app/account/api)
-PRINTIFY_API_KEY="YOUR_PRINTIFY_API_TOKEN_HERE"
-
-# Next.js Configuration
-NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+# Real Printify API (get from https://printify.com/app/account/api)
+PRINTIFY_API_KEY="YOUR_ACTUAL_PRINTIFY_TOKEN"
 ```
 
-### Test Mode Setup
-For testing without external APIs:
-```bash
-# Use these for local testing without real API calls
-STRIPE_SECRET_KEY="sk_test_fake_key_for_local_testing"
-PRINTIFY_API_KEY="fake_api_key_for_local_testing"
-```
+**Note:** The application works perfectly for testing without real API keys!
 
 ## 🧪 Comprehensive Browser Testing
 
@@ -164,11 +160,13 @@ Test in these browsers:
 The project includes MCP browser testing capabilities for automated validation:
 
 ### Running Automated Tests
-```bash
+**Terminal**: Use PowerShell/Command Prompt (Windows) or Terminal (Mac/Linux)
+
+```powershell
 # Run all automated tests
 npm run test:browser
 
-# Run specific test suites
+# Run specific test suites  
 npm run test:integration
 npm run test:e2e
 ```
@@ -180,33 +178,40 @@ npm run test:e2e
 - 🔍 Search and filter functionality
 - 🎨 Product gallery interactions
 
-## 🚨 Common Issues & Solutions
+## 🚨 Troubleshooting
 
-### Database Issues
-```bash
+### ⚠️ Important: Use Correct Terminal
+- **Windows**: Use **PowerShell** or **Command Prompt** only
+- **Do NOT use WSL/WSL2** - npm operations may fail in WSL
+- **Mac/Linux**: Use standard terminal
+
+### Common Solutions
+
+**Database Issues:**
+```powershell
 # Reset database
 npx prisma db push --force-reset
 npx prisma db seed
 ```
 
-### Port Conflicts
-```bash
+**Port Already in Use:**
+```powershell
 # Use different port
 npm run dev -- -p 3001
 ```
 
-### Cache Issues
-```bash
+**Clear Cache Issues:**
+```powershell
 # Clear Next.js cache
-rm -rf .next
+Remove-Item -Recurse -Force .next  # PowerShell
+# OR
+rmdir /s .next                     # Command Prompt
 npm run dev
 ```
 
-### Environment Variables Not Loading
-```bash
-# Restart development server after .env changes
-# Verify .env file is in correct location (ai-art-store/.env)
-```
+**Environment Variables:**
+- Restart development server after .env changes
+- Verify .env file exists in ai-art-store folder
 
 ## 📊 Production Readiness Checklist
 

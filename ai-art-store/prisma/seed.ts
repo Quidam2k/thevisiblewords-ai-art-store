@@ -28,7 +28,7 @@ async function createSampleArtworks() {
       prompt: 'A pop-up shop on a meadow futuristic art architecture with paper lanterns, twilight lighting, ethereal atmosphere',
       fileUrl: '/sample-product-1.png',
       thumbnailUrl: '/sample-product-1.png',
-      tags: ['architecture', 'meadow', 'lanterns', 'twilight', 'ethereal', 'peaceful', 'zen'],
+      tags: JSON.stringify(['architecture', 'meadow', 'lanterns', 'twilight', 'ethereal', 'peaceful', 'zen']),
       style: 'WHIMSY' as const,
       analysis: {
         dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
@@ -49,7 +49,7 @@ async function createSampleArtworks() {
       prompt: 'stained glass angels, red and blue contrast, sacred art, geometric patterns, dramatic lighting, spiritual battle',
       fileUrl: '/sample-product-2.png',
       thumbnailUrl: '/sample-product-2.png',
-      tags: ['stained-glass', 'angels', 'religious', 'geometric', 'dramatic', 'spiritual', 'contrast'],
+      tags: JSON.stringify(['stained-glass', 'angels', 'religious', 'geometric', 'dramatic', 'spiritual', 'contrast']),
       style: 'EPIC' as const,
       analysis: {
         dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
@@ -70,7 +70,7 @@ async function createSampleArtworks() {
       prompt: 'fantasy magic library with books, overgrown plants, gothic windows, mystical atmosphere, ancient knowledge',
       fileUrl: '/sample-product-3.png',
       thumbnailUrl: '/sample-product-3.png',
-      tags: ['library', 'fantasy', 'books', 'gothic', 'mystical', 'ancient', 'magical'],
+      tags: JSON.stringify(['library', 'fantasy', 'books', 'gothic', 'mystical', 'ancient', 'magical']),
       style: 'HYBRID' as const,
       analysis: {
         dimensions: { width: 2048, height: 2048, aspectRatio: 1 },
@@ -150,7 +150,7 @@ async function createSampleProducts(artworks: any[]) {
             printifyBlueprintId: template.printifyBlueprintId,
             printProviderId: template.printProviderId,
             variants: template.variants,
-            images: [artwork.fileUrl], // Use artwork image as product image
+            images: JSON.stringify([artwork.fileUrl]), // Use artwork image as product image
             category: template.category,
             featured: Math.random() > 0.7, // Randomly feature some products
             active: true,

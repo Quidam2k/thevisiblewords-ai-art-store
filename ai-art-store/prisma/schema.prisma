@@ -6,9 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 // ===================================
@@ -23,7 +22,7 @@ model Artwork {
   fileUrl      String   @map("file_url")
   thumbnailUrl String?  @map("thumbnail_url")
   analysis     Json?    // ImageAnalysis data
-  tags         String[]
+  tags         String // JSON string of tags array
   style        Style    @default(WHIMSY)
   active       Boolean  @default(true)
   createdAt    DateTime @default(now()) @map("created_at")
@@ -47,7 +46,7 @@ model Product {
   printifyBlueprintId Int      @map("printify_blueprint_id")
   printProviderId     Int      @map("print_provider_id")
   variants            Json?    // ProductVariant[]
-  images              String[] // Array of image URLs
+  images              String // JSON string of image URLs array
   category            String?
   featured            Boolean  @default(false)
   createdAt           DateTime @default(now()) @map("created_at")
@@ -126,7 +125,7 @@ model CustomRequest {
   customerEmail        String              @map("customer_email")
   customerName         String?             @map("customer_name")
   prompt               String
-  preferredProducts    String[]            @map("preferred_products")
+  preferredProducts    String              @map("preferred_products") // JSON string of product IDs
   status               CustomRequestStatus @default(PENDING)
   adminNotes           String?             @map("admin_notes")
   estimatedCompletion  DateTime?           @map("estimated_completion")
