@@ -1,0 +1,21 @@
+{
+  "name": "The Visible Words - AI Art Store",
+  "short_name": "Visible Words",
+  "description": "AI-Generated Art Store with Print-on-Demand Products",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

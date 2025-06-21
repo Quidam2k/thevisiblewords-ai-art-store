@@ -64,37 +64,61 @@ www.thevisiblewords.com/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8+ 
-- Node.js 16+ (for browser testing)
-- Docker (optional, for containerized deployment)
+- Python 3.8+ (for automation system)
+- Node.js 18+ (for e-commerce store)
+- Git (for repository management)
 
-### Installation
+### **Option 1: Automated Setup (Recommended)**
 ```bash
 # Clone and navigate to project
+git clone <repository-url>
 cd www.thevisiblewords.com
 
-# Set up Python environment
-cd printify-automation
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Setup AI Art Store (Next.js)
+./scripts/setup-store.sh --dev
+# 🌐 Access store: http://localhost:3000
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Copy configuration template
-cp config/config.template.json config/config.json
-# Edit config.json with your Printify API credentials
-
-# Run the application
-python app.py
+# Setup Automation System (in new terminal)
+./scripts/quickstart.sh
+# 🤖 Access automation: http://localhost:7860
 ```
 
-Navigate to `http://localhost:7860` to access the web interface.
-
-### Docker Deployment
+### **Option 2: Manual Setup**
 ```bash
-cd printify-automation/deploy
-docker-compose up -d
+# AI Art Store Setup
+cd ai-art-store
+npm install
+cp .env.example .env
+# Edit .env with your API keys
+npx prisma migrate dev --name init
+npx prisma db seed
+npm run dev  # http://localhost:3000
+
+# Automation System Setup (new terminal)
+cd printify-automation
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp config/config.template.json config/config.json
+# Edit config.json with Printify credentials  
+python3 app.py  # http://localhost:7860
+```
+
+### **Required API Configuration**
+```bash
+# ai-art-store/.env
+STRIPE_SECRET_KEY="sk_test_..."
+STRIPE_PUBLISHABLE_KEY="pk_test_..."
+PRINTIFY_API_KEY="your_printify_token"
+PRINTIFY_SHOP_ID="your_shop_id"
+
+# printify-automation/config/config.json
+{
+  "api": {
+    "access_token": "your_printify_token",
+    "shop_id": "your_shop_id"
+  }
+}
 ```
 
 ## 📊 Current Status

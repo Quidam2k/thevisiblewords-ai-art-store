@@ -4,8 +4,8 @@
     "passed": 3,
     "failed": 3,
     "success_rate": 50.0,
-    "duration_seconds": 0.33,
-    "timestamp": "2025-06-21T12:48:15.218491"
+    "duration_seconds": 0.09,
+    "timestamp": "2025-06-21T13:46:47.573975"
   },
   "results": [
     {
@@ -13,35 +13,35 @@
       "success": true,
       "message": "All 14 required files present",
       "details": {},
-      "timestamp": "2025-06-21T12:48:14.897604"
+      "timestamp": "2025-06-21T13:46:47.473604"
     },
     {
       "test": "automation_system",
       "success": false,
       "message": "Error: No module named 'PIL'",
       "details": {},
-      "timestamp": "2025-06-21T12:48:15.204815"
+      "timestamp": "2025-06-21T13:46:47.522713"
     },
     {
       "test": "database_exists",
       "success": false,
       "message": "Database file not found",
       "details": {},
-      "timestamp": "2025-06-21T12:48:15.205336"
+      "timestamp": "2025-06-21T13:46:47.524133"
     },
     {
       "test": "test_images",
       "success": true,
       "message": "Found 23 test images, using quidamn_An_extraterrestrial_technological_architecture_Transfor_9a843c1c-7258-4773-b9a2-507144ecdf4f.png",
       "details": {},
-      "timestamp": "2025-06-21T12:48:15.207547"
+      "timestamp": "2025-06-21T13:46:47.539592"
     },
     {
       "test": "image_processing_workflow",
       "success": false,
       "message": "Error: No module named 'PIL'",
       "details": {},
-      "timestamp": "2025-06-21T12:48:15.214047"
+      "timestamp": "2025-06-21T13:46:47.550393"
     },
     {
       "test": "data_conversion",
@@ -52,21 +52,21 @@
         "tags_count": 5,
         "style": "WHIMSY"
       },
-      "timestamp": "2025-06-21T12:48:15.214089"
+      "timestamp": "2025-06-21T13:46:47.550429"
     },
     {
       "test": "api_endpoint__api_products",
       "success": false,
       "message": "Server not running (expected for this test)",
       "details": {},
-      "timestamp": "2025-06-21T12:48:15.216961"
+      "timestamp": "2025-06-21T13:46:47.555206"
     },
     {
       "test": "api_endpoint__api_categories",
       "success": false,
       "message": "Server not running (expected for this test)",
       "details": {},
-      "timestamp": "2025-06-21T12:48:15.217403"
+      "timestamp": "2025-06-21T13:46:47.555611"
     }
   ]
 }
