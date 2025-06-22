@@ -52,9 +52,7 @@ const nextConfig = {
   },
   // Performance optimizations
   compress: true,
-  swcMinify: true,
   reactStrictMode: true,
-  optimizeFonts: true,
   poweredByHeader: false,
   
   // Environment variables
